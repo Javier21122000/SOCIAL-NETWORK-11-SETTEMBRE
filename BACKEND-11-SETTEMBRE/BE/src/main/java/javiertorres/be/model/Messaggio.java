@@ -2,6 +2,7 @@ package javiertorres.be.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import java.time.Instant;
 import java.util.*;
@@ -16,5 +17,6 @@ public class Messaggio {
     private Instant createdAt;
     @ManyToOne
     @JoinColumn(name = "utente_id")
+    @JsonIgnore
     private Utente utente;
 }

@@ -2,6 +2,7 @@ package javiertorres.be.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import java.time.Instant;
 import java.util.*;
@@ -15,8 +16,11 @@ public class Utente {
     private String username;
     @CreationTimestamp
     private Instant createdAt;
+    // Lato inverso: serializzarlo creerebbe un ciclo profilo <-> utente nel JSON dei post.
     @OneToOne(mappedBy = "utente", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Profilo profilo;
     @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Messaggio> messaggi = new ArrayList<>();
 }

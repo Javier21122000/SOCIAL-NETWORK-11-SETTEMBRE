@@ -1,0 +1,245 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2870
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Bold;\f1\fnil\fcharset0 HelveticaNeue;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{circle\}}{\leveltext\leveltemplateid1\'01\uc0\u9702 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab560
+\pard\pardeftab560\pardirnatural\partightenfactor0
+
+\f0\b\fs40 \cf0 SOCIAL-NETWORK-11-SETTEMBRE\
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\f1\b0\fs26 \cf0 \
+\
+\
+\
+\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f0\b \cf0 ENTITA\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f1\b0 \cf0 \
+\pard\pardeftab560\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf0 {\listtext	\uc0\u9702 	}UTENTE (ACCOUNT PROFILO, ONE TO MANY CON MESSAGGI) , \
+{\listtext	\uc0\u9702 	}PROFILO (DEFINISCO COME ENTITA PER ORGANIZZARE MEGLIO ,IMPORTANTE: CARICARE DOCUMENTI FEED PROPRIO , IMPOSTAZIONI (FINTE) , MODIFICA DEL NOME E IMMAGINE, HA UNA RELAZIONE CON UTENTE MA NON CON MESSAGGI , POST ETC )\
+{\listtext	\uc0\u9702 	}MESSAGGI (FINTI E DA ACCOUNT FINTI E DI DEFAULT) ,\
+{\listtext	\uc0\u9702 	} CERCA(NON UN ENTITA MA UNA FUNZIONALITA) (PUO CERCARE IN TUTTA LA APP) , sia parole chiave che id post e id foto oppure anche impostazioni , profilo etc\
+{\listtext	\uc0\u9702 	}CREA/POST , USERO IN FRONTEND UN MESSAGGIO CHE DICE POSTA EVIDENZIATO E CENTRATO , PERMETTERA DI USARE SIA CAMPO FILE CHE GETUSERMEDIA , CARICARE ALMENO 1 FOTO O MASSIMO 5 FOTO , TUTTE CON LIMITE DI DIMENSIONE DA DECIDERE POI ED ESTENSIONI SOLO HEIC/JPEG/JPG , SARA DEFINITO DA ENDPOINT DI  POST , POTRO FARE LE GET , DELETE , PATCH MA SOLO SULLA DIDASCALIA O INDIRIZZO SCELTO DA MAPPE(HA UNA RELAZIONE MANY TO ONE CON FOTO) , LA PARTE INDIRIZZI LA DEFINISCO ALL INTERNO DELL ENTITA DI POST, COLLEGO API DI GOOGLE MAPS  PER AVERE LUOGHI E COORDINATE PRECISE, QUANDO CARICO IL POST ESCE MODALE COLLEGATA AD API , DOVE \'e8 STATA SCATTATA? CON VIEWPORT BELLA ESTETICAMENTE DI MAPS E MI FA CERCARE O POSIZIONARE TOCCANDO DIRETTAMENTE UN PUNTO SULLA MAPPA, INDIRIZZO VIENE COLLEGATO DIRETTAMENTE A POST E NON ALLE SINGOLE FOTO, SEMPRE IN POST, AVRO ALTERNATIVA DI CARICARE DOCUMENTI O FOTO CON CAMPOFILE E GETUSERMEDIA , USERA OCR DI TESSERACT , GIA INSTALLATO NEL MAC, ED ESTRARRA IL CONTENUTO TESTUALE, EVENTUALMENTE MODIFICABILE E SALVABILE, I POST DEI DOCUMENTI SI POTRANNO VEDERE NELLO STESSO FEED DELLE FOTO E VISUALIZZERANNO PRIMA LA FOTO STESSA , POI SCORRENDO A DESTRA IL TESTO ESTRATTO CURATO ESTETICAMENTE, PER IL FRONTEND I DOCUMENTI NEL FEED PROPRIO AVRANNO BORDO ARANCIONI E LE FOTO NORMALI BORDI ROSA PER RICONOSCERLI )\
+{\listtext	\uc0\u9702 	}FOTO, SI COLLEGA A POST CON IL DB , CHIARAMENTE MANY TO ONE \
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\
+\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f0\b \cf0 UTENTE\
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\f1\b0 \cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 id utente guuid\
+username string\
+id profilo guuid\
+created at instant\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f0\b \cf0 controller utente\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f1\b0 \cf0 POST , PATCH e DELETE di cambia modifica o rimuovi foto\
+\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f0\b \cf0 PROFILO\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f1\b0 \cf0 id profilo guuid\
+id profilo utente FK guuid\
+\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f0\b \cf0 controller profilo\
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\f1\b0 \cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f0\b \cf0 MESSAGGI\
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\f1\b0 \cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 PRINCIPALEMNTE TUTTO FRONTEND\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 id messaggio guuid\
+id mittente guuid\
+created at instant preimpostato\
+id  messaggi utente FK\
+\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f0\b \cf0 POST\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f1\b0 \cf0 id post guuid\
+indirizzo\
+id post documenti guuid\
+id post profilo guuid\
+didascalia text\
+\
+focus sulla parte degli endpoint\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f0\b \cf0 controller post\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f1\b0 \cf0 GET sugli id post e id foto e id documenti per vederli tutti 200\
+POST per postare con id foto , id documenti e id post 201\
+DELETE per rimuovere id post che rimuove completamente anche id foto e id documenti 204\
+PATCH solo su didascalia text 201\
+\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f0\b \cf0 FOTO\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f1\b0 \cf0 id foto\
+id post foto FK guuid\
+id utente (sempre lo stesso ma vero anche senza autenticazione)\
+read at instant default null , si possono segnare come lette da frontend che comunica con backend\
+\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 \
+in frontend (modifica profilo , cambia o rimuovi foto profilo , numero post (conteggiato realmente) followers e seguiti , tasto vai a messaggi ,tasto di impostazioni che in hover apre modale che include impostazione e privacy , lavora con noi , account per professionisti , scopri di piu etc , palette di pochi colori e tenui , bordi molto arrotondati , sidebar a sinistra che si allarga quando vado in hover e mostra le altre funzionalita, sulla destra i messaggi)\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f0\b \cf0 servizi esterni e librerie\
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\f1\b0 \cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 tesseract\
+api di google maps\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 tailwind css per FE\
+\
+su intellij:\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+Maven\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 Java 21 non il 25 che mi cre conflitti a volte con tesseract e spring boot\
+\
+con dipendenze:\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 Lombok\
+Spring Boot DevTools\
+Spring Web\
+Spring Data JPA\
+PostgreSQL Driver\
+Validation\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\
+\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f0\b \cf0 ISTRUZIONI PER AI \
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\f1\b0 \cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 1 step , fatti un giro nella cartella/repository e fatti un idea del progetto e di cio che dovrebbe essere implementato\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 2 step , in base a quello che mi ha detto lui lo riconfiguro database locale fai config di cors su porta 5173 con get post delete patch e update\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 3 step , creami queste entities (che avevo gia pianificato prima)\
+\
+le config piu importanti da vedere bene sono CORSCONFIG su porta 5173 frontend e APP PROPERTIES porta 8080 per backend\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 4 step , non fare testing , non abilitiamo hashing , e fai , reposiotries jpa , i controller e service\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 5 step verifica se funziona tutto BE\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f0\b \cf0 STEP CHE SEGUIRO IO \
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\f1\b0 \cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 1 creero repository su github per il progetto\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 2 creero database su pgadmin \
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 3 installero moduli e dipendenze e preparero il campo per backend e frontend , primo commit\
+\
+4 verifichero da app properties che il database sia collegato , secondo commit \
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 5 creero entita , controllers e services e runners e testero su postman , terzo commit\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 6 testero il backend funzionante sul db con messaggi , utenti e post\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 7 verificato il be e db , creero il frontend con i vari collegamenti , quarto commit\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 8 creato il progetto lo testero su chrome e safari tenendo docchio la console , commit finale\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}

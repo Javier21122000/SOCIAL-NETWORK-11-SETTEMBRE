@@ -12,19 +12,30 @@ import java.util.*;
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
+    /** Corpo JSON accettato da PUT/PATCH /api/posts/{id}. */
+    public record AggiornaDidascalia(String didascalia) {}
+
     private final PostService service;
     private final ObjectMapper objectMapper;
+
     public PostController(PostService service, ObjectMapper objectMapper) {
         this.service = service;
         this.objectMapper = objectMapper;
     }
+
     @GetMapping({"", "/"})
     public ResponseEntity<List<Post>> getAll() { return ResponseEntity.ok(service.findAll()); }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Post> getById(@PathVariable UUID id) { return ResponseEntity.ok(service.findById(id)); }
+
     @PostMapping(value = {"", "/"}, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Post> createJson(@RequestBody Post post) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(post));
     }
-    @PostMapping(value = "/multipart", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+
+    // Il frontend invia il FormData su /api/posts; /multipart resta come alias storico.
+    @PostMapping(value = {"", "/", "/multipart"}, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Post> createMultipart(
             @RequestParam(defaultValue = "") String didascalia,
             @RequestParam String indirizzo,
@@ -39,8 +50,16 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(service.createMultipart(didascalia, parsedAddress, testoEstrattoOcr, files));
     }
+
+    @RequestMapping(value = "/{id}", method = {RequestMethod.PUT, RequestMethod.PATCH},
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Post> updateDidascalia(@PathVariable UUID id, @RequestBody AggiornaDidascalia body) {
+        return ResponseEntity.ok(service.updateDidascalia(id, body == null ? null : body.didascalia()));
+    }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable UUID id) { service.delete(id); return ResponseEntity.noContent().build(); }
-    @PatchMapping("/{id}/didascalia")
-    public ResponseEntity<Post> updateDidascalia(@PathVariable UUID id, @RequestBody String didascalia) { return ResponseEntity.status(HttpStatus.CREATED).body(service.updateDidascalia(id, didascalia)); }
+    public ResponseEntity<Void> delete(@PathVariable UUID id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
