@@ -26,6 +26,21 @@ public class PostService {
         try { Files.createDirectories(this.uploadDirectory); }
         catch (IOException exception) { throw new IllegalStateException("Impossibile creare la cartella upload", exception); }
     }
+
+    private void handleFileUpload(MultipartFile file, Post post, String url, String contentType, String testoEstrattoOcr) {
+        if (PHOTO_TYPES.contains(contentType)) {
+            Foto photo = new Foto();
+            photo.setUrlFile(url);
+            photo.setPost(post);
+            post.getFoto().add(photo);
+        } else {
+            Documento document = new Documento();
+            document.setUrlFile(url);
+            document.setTestoEstrattoOcr(testoEstrattoOcr == null || testoEstrattoOcr.isBlank() ? null : testoEstrattoOcr.trim());
+            document.setPost(post);
+            post.getDocumenti().add(document);
+        }
+    }
     public List<Post> findAll() { return postRepository.findAll(); }
     public Post create(Post post) {
         if (post.getCreatedAt() == null) post.setCreatedAt(Instant.now());
@@ -60,18 +75,7 @@ public class PostService {
                 }
                 writtenFiles.add(target);
                 String url = "/uploads/" + storedName;
-                if (PHOTO_TYPES.contains(contentType)) {
-                    Foto photo = new Foto();
-                    photo.setUrlFile(url);
-                    photo.setPost(post);
-                    post.getFoto().add(photo);
-                } else {
-                    Documento document = new Documento();
-                    document.setUrlFile(url);
-                    document.setTestoEstrattoOcr(testoEstrattoOcr == null || testoEstrattoOcr.isBlank() ? null : testoEstrattoOcr.trim());
-                    document.setPost(post);
-                    post.getDocumenti().add(document);
-                }
+                handleFileUpload(file, post, url, contentType, testoEstrattoOcr);
             }
             return postRepository.save(post);
         } catch (IOException | RuntimeException exception) {

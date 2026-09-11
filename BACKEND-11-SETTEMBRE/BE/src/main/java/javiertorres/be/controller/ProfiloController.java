@@ -12,7 +12,9 @@ public class ProfiloController {
     private final ProfiloService service;
     public ProfiloController(ProfiloService service) { this.service = service; }
     @PatchMapping("/{id}/foto")
-    public ResponseEntity<Profilo> updateFoto(@PathVariable UUID id, @RequestParam String fotoProfiloUrl) { return ResponseEntity.ok(service.updateFoto(id, fotoProfiloUrl)); }
+    public ResponseEntity<Profilo> updateFoto(@PathVariable UUID id, @RequestParam("fotoProfiloUrl") String fotoProfiloUrl) {
+        return ResponseEntity.ok(service.updateFoto(id, fotoProfiloUrl));
+    }
     @DeleteMapping("/{id}/foto")
     public ResponseEntity<Void> removeFoto(@PathVariable UUID id) { service.removeFoto(id); return ResponseEntity.noContent().build(); }
 }

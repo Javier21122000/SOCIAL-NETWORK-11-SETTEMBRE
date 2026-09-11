@@ -24,7 +24,7 @@ public class PostController {
     public ResponseEntity<Post> createJson(@RequestBody Post post) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(post));
     }
-    @PostMapping(value = {"", "/"}, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/multipart", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Post> createMultipart(
             @RequestParam(defaultValue = "") String didascalia,
             @RequestParam String indirizzo,
